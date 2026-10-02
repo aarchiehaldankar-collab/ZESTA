@@ -72,18 +72,157 @@ const restaurantNames = [
 ];
 
 
-const localities = [
-    "City Centre",
-    "MG Road",
-    "High Street",
-    "Main Road",
-    "Market Area",
-    "Central District",
-    "Park Street",
-    "Lake Road",
-    "Downtown",
-    "Station Road"
-];
+const cityLocalities = {
+    "Mumbai": [
+        "Andheri", "Bandra", "Powai", "Juhu", "Lower Parel",
+        "Colaba", "Vile Parle", "Goregaon", "Dadar", "Borivali"
+    ],
+
+    "Delhi": [
+        "Connaught Place", "Saket", "Hauz Khas", "Vasant Kunj", "Dwarka",
+        "Rohini", "Karol Bagh", "Lajpat Nagar", "Greater Kailash", "Chandni Chowk"
+    ],
+
+    "Bengaluru": [
+        "Indiranagar", "Koramangala", "Whitefield", "HSR Layout", "Jayanagar",
+        "MG Road", "Marathahalli", "JP Nagar", "Malleshwaram", "Electronic City"
+    ],
+
+    "Hyderabad": [
+        "Banjara Hills", "Jubilee Hills", "Hitech City", "Gachibowli", "Madhapur",
+        "Kondapur", "Begumpet", "Secunderabad", "Kukatpally", "Ameerpet"
+    ],
+
+    "Chennai": [
+        "T Nagar", "Adyar", "Anna Nagar", "Velachery", "Nungambakkam",
+        "Besant Nagar", "Mylapore", "Guindy", "OMR", "Alwarpet"
+    ],
+
+    "Kolkata": [
+        "Park Street", "Salt Lake", "Ballygunge", "New Town", "Alipore",
+        "Gariahat", "Esplanade", "Rajarhat", "Behala", "Tollygunge"
+    ],
+
+    "Pune": [
+        "Koregaon Park", "Viman Nagar", "Kalyani Nagar", "Baner", "Hinjewadi",
+        "Wakad", "Kothrud", "Aundh", "Shivajinagar", "Deccan"
+    ],
+
+    "Ahmedabad": [
+        "Navrangpura", "Satellite", "Bodakdev", "Prahlad Nagar", "Vastrapur",
+        "Maninagar", "CG Road", "Thaltej", "Bopal", "SG Highway"
+    ],
+
+    "Jaipur": [
+        "C Scheme", "Malviya Nagar", "Vaishali Nagar", "Raja Park", "Mansarovar",
+        "MI Road", "Tonk Road", "Bani Park", "Civil Lines", "Jagatpura"
+    ],
+
+    "Goa": [
+        "Baga", "Calangute", "Candolim", "Anjuna", "Panaji",
+        "Vagator", "Margao", "Panjim", "Arpora", "Porvorim"
+    ],
+
+    "Lucknow": [
+        "Gomti Nagar", "Hazratganj", "Aliganj", "Indira Nagar", "Alambagh",
+        "Mahanagar", "Vibhuti Khand", "Chinhat", "Aminabad", "Rajajipuram"
+    ],
+
+    "Chandigarh": [
+        "Sector 17", "Sector 22", "Sector 35", "Sector 43", "Sector 8",
+        "Sector 9", "Sector 15", "Sector 34", "Manimajra", "Zirakpur"
+    ],
+
+    "Kochi": [
+        "Fort Kochi", "Marine Drive", "Kakkanad", "Edappally", "Panampilly Nagar",
+        "Vyttila", "Kaloor", "Palarivattom", "MG Road", "Kadavanthra"
+    ],
+
+    "Indore": [
+        "Vijay Nagar", "Palasia", "Bhawarkua", "Rau", "New Palasia",
+        "MG Road", "Sudama Nagar", "Scheme 54", "Saket Nagar", "Bengali Square"
+    ],
+
+    "Nagpur": [
+        "Dharampeth", "Sadar", "Civil Lines", "Sitabuldi", "Manish Nagar",
+        "Wardha Road", "Bajaj Nagar", "Pratap Nagar", "Trimurti Nagar", "Laxmi Nagar"
+    ],
+
+    "Surat": [
+        "Vesu", "Adajan", "Piplod", "Athwa", "City Light",
+        "Pal", "Dumas Road", "Varachha", "Nanpura", "Katargam"
+    ],
+
+    "Vadodara": [
+        "Alkapuri", "Fatehgunj", "Gotri", "Manjalpur", "Akota",
+        "Vasna", "Karelibaug", "Sayajigunj", "Race Course", "Old Padra Road"
+    ],
+
+    "Coimbatore": [
+        "RS Puram", "Gandhipuram", "Saibaba Colony", "Peelamedu", "Race Course",
+        "Singanallur", "Avinashi Road", "Ukkadam", "Vadavalli", "Saravanampatti"
+    ],
+
+    "Visakhapatnam": [
+        "MVP Colony", "Dwaraka Nagar", "Siripuram", "Beach Road", "Gajuwaka",
+        "Madhurawada", "Seethammadhara", "Rushikonda", "Jagadamba", "Asilmetta"
+    ],
+
+    "Bhopal": [
+        "MP Nagar", "Arera Colony", "Kolar Road", "Shahpura", "Gulmohar",
+        "TT Nagar", "Bawadia Kalan", "Habibganj", "New Market", "Ayodhya Bypass"
+    ],
+
+    "Bhubaneswar": [
+        "Saheed Nagar", "Patia", "Jaydev Vihar", "Nayapalli", "Kharavel Nagar",
+        "Chandrasekharpur", "Old Town", "KIIT Road", "Rasulgarh", "Unit 4"
+    ],
+
+    "Patna": [
+        "Boring Road", "Fraser Road", "Kankarbagh", "Patliputra Colony", "Bailey Road",
+        "Rajendra Nagar", "Danapur", "Exhibition Road", "Saguna More", "Ashiana Nagar"
+    ],
+
+    "Guwahati": [
+        "Paltan Bazaar", "GS Road", "Zoo Road", "Dispur", "Beltola",
+        "Six Mile", "Ulubari", "Chandmari", "Pan Bazaar", "Khanapara"
+    ],
+
+    "Amritsar": [
+        "Golden Temple Area", "Lawrence Road", "Ranjit Avenue", "Mall Road", "GT Road",
+        "Majitha Road", "Hall Bazaar", "Putlighar", "White Avenue", "Batala Road"
+    ],
+
+    "Udaipur": [
+        "Lake Pichola", "Fateh Sagar", "Hathi Pol", "Surajpole", "Shobhagpura",
+        "Saheli Nagar", "Rani Road", "Bhopalpura", "Goverdhan Vilas", "Ashok Nagar"
+    ],
+
+    "Mysore": [
+        "VV Mohalla", "Kuvempunagar", "Jayalakshmipuram", "Gokulam", "Saraswathipuram",
+        "Hebbal", "Vijayanagar", "Nazarbad", "Lakshmipuram", "MG Road"
+    ],
+
+    "Nashik": [
+        "College Road", "Gangapur Road", "Indira Nagar", "Panchavati", "Canada Corner",
+        "Govind Nagar", "Pathardi Phata", "Cidco", "Satpur", "Nashik Road"
+    ],
+
+    "Varanasi": [
+        "Bhelupur", "Assi", "Lanka", "Godowlia", "Sigra",
+        "Cantonment", "Mahmoorganj", "Ramnagar", "Sarnath", "Shivala"
+    ],
+
+    "Dehradun": [
+        "Rajpur Road", "Clement Town", "Clock Tower", "Ballupur", "Sahastradhara Road",
+        "Vasant Vihar", "Jakhan", "Prem Nagar", "Race Course", "Nehru Colony"
+    ],
+
+    "Agra": [
+        "Tajganj", "Sanjay Place", "Civil Lines", "Kamla Nagar", "Sikandra",
+        "Dayal Bagh", "Fatehabad Road", "Agra Cantt", "Shahganj", "MG Road"
+    ]
+};
 
 
 const restaurantImages = [
@@ -239,10 +378,10 @@ cities.forEach((city, cityIndex) => {
                 restaurantNames[i];
 
             const locality =
-                localities[
-                    (cityIndex + i + cuisineIndex)
-                    % localities.length
-                ];
+    cityLocalities[city][
+        (i + cuisineIndex)
+        % cityLocalities[city].length
+    ];
 
             let type;
 
