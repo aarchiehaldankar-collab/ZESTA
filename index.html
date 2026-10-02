@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZESTA | Discover. Reserve. Dine.</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo" onclick="goHome()">
+        ZESTA<span>.</span>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#restaurants">Restaurants</a>
+        <a href="#how">How It Works</a>
+    </nav>
+
+    <div class="header-right">
+
+        <button
+            class="booking-link"
+            onclick="showBookings()"
+        >
+            My Bookings
+        </button>
+
+        <button
+            class="login-header"
+            id="loginHeader"
+            onclick="openLogin()"
+        >
+            Login / Sign Up
+        </button>
+
+        <div
+            class="user-menu"
+            id="userMenu"
+            onclick="toggleUserMenu()"
+        >
+            <span id="userInitial">U</span>
+            <span id="headerUserName">User</span>
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <p class="hero-small">
+            DISCOVER • RESERVE • DINE
+        </p>
+
+        <h1>
+            Find your next<br>
+            <span>favourite table.</span>
+        </h1>
+
+        <p>
+            Discover restaurants, explore menus and reserve your table
+            across India.
+        </p>
+
+
+        <div class="search-box">
+
+            <select id="location">
+                <option value="All India">📍 All India</option>
+            </select>
+
+            <select id="cuisine">
+
+                <option value="All">
+                    All Cuisines
+                </option>
+
+                <option>North Indian</option>
+                <option>South Indian</option>
+                <option>Chinese</option>
+                <option>Italian</option>
+                <option>Continental</option>
+                <option>Asian</option>
+                <option>Mexican</option>
+                <option>Punjabi</option>
+                <option>Mughlai</option>
+                <option>Fast Food</option>
+                <option>Cafe</option>
+                <option>Biryani</option>
+                <option>Street Food</option>
+
+            </select>
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search restaurants or cuisines..."
+            >
+
+            <button onclick="renderRestaurants()">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CITIES ================= -->
+
+<section class="city-section">
+
+    <div class="container">
+
+        <p class="section-label">
+            EXPLORE INDIA
+        </p>
+
+        <h2>
+            Choose your city
+        </h2>
+
+        <div
+            class="city-buttons"
+            id="cityButtons"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= RESTAURANTS ================= -->
+
+<section
+    class="restaurants-section"
+    id="restaurants"
+>
+
+    <div class="container">
+
+        <div class="restaurant-heading">
+
+            <div>
+
+                <p class="section-label">
+                    DISCOVER
+                </p>
+
+                <h2>
+                    Restaurants for you
+                </h2>
+
+                <p
+                    id="resultCount"
+                    class="result-count"
+                >
+                    Showing restaurants
+                </p>
+
+            </div>
+
+
+            <select
+                id="sort"
+                onchange="renderRestaurants()"
+            >
+
+                <option value="recommended">
+                    Recommended
+                </option>
+
+                <option value="rating">
+                    Rating: High to Low
+                </option>
+
+                <option value="low">
+                    Cost: Low to High
+                </option>
+
+                <option value="high">
+                    Cost: High to Low
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <button
+                class="filter active"
+                onclick="setType('All',this)"
+            >
+                All
+            </button>
+
+            <button
+                class="filter"
+                onclick="setType('Pure Veg',this)"
+            >
+                🥗 Pure Veg
+            </button>
+
+            <button
+                class="filter"
+                onclick="setType('Cafe',this)"
+            >
+                ☕ Cafés
+            </button>
+
+            <button
+                class="filter"
+                onclick="setType('Fine Dining',this)"
+            >
+                ✨ Fine Dining
+            </button>
+
+            <button
+                class="filter"
+                onclick="setType('Delivery',this)"
+            >
+                🛵 Delivery
+            </button>
+
+        </div>
+
+
+        <!-- RESTAURANT GRID -->
+
+        <div
+            class="restaurant-grid"
+            id="restaurantGrid"
+        ></div>
+
+
+        <!-- NO RESULTS -->
+
+        <div
+            class="no-results"
+            id="noResults"
+        >
+
+            <div class="empty-icon">
+                🍽️
+            </div>
+
+            <h3>
+                No restaurants found
+            </h3>
+
+            <p>
+                Try changing your city or cuisine.
+            </p>
+
+            <button onclick="resetFilters()">
+                Show all restaurants
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section
+    class="how-section"
+    id="how"
+>
+
+    <div class="container">
+
+        <p class="section-label">
+            SIMPLE & EASY
+        </p>
+
+        <h2>
+            How ZESTA works
+        </h2>
+
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-icon">
+                    🔎
+                </div>
+
+                <h3>
+                    Discover
+                </h3>
+
+                <p>
+                    Find restaurants by city,
+                    cuisine or restaurant name.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-icon">
+                    🍽️
+                </div>
+
+                <h3>
+                    Explore
+                </h3>
+
+                <p>
+                    Check ratings, prices and
+                    complete menus.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-icon">
+                    📅
+                </div>
+
+                <h3>
+                    Reserve
+                </h3>
+
+                <p>
+                    Select your date, guests
+                    and preferred time.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-icon">
+                    🎉
+                </div>
+
+                <h3>
+                    Dine
+                </h3>
+
+                <p>
+                    Get your booking confirmation
+                    and enjoy your meal.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about-section">
+
+    <div class="container about-grid">
+
+        <div>
+
+            <p class="section-label">
+                ABOUT ZESTA
+            </p>
+
+            <h2>
+                Good food.<br>
+                Great places.<br>
+                One platform.
+            </h2>
+
+        </div>
+
+
+        <div class="about-text">
+
+            <p>
+                ZESTA is a student-built restaurant discovery
+                and table reservation platform.
+            </p>
+
+            <p>
+                Users can discover restaurants, explore menus,
+                select a table and complete a simulated
+                reservation and payment process.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="logo">
+        ZESTA<span>.</span>
+    </div>
+
+    <p>
+        Discover. Reserve. Dine.
+    </p>
+
+    <p>
+        © 2026 ZESTA
+    </p>
+
+</footer>
+
+
+<!-- ================================================= -->
+<!-- LOGIN MODAL -->
+<!-- ================================================= -->
+
+<div
+    class="modal"
+    id="loginModal"
+>
+
+    <div class="modal-box login-box">
+
+        <button
+            class="close"
+            onclick="closeModal('loginModal')"
+        >
+            ×
+        </button>
+
+        <div class="modal-logo">
+            ZESTA<span>.</span>
+        </div>
+
+        <h2>
+            Welcome to ZESTA
+        </h2>
+
+        <p class="modal-subtitle">
+            Login or create your account to reserve a table.
+        </p>
+
+
+        <form onsubmit="loginUser(event)">
+
+            <label>
+                Your Name
+            </label>
+
+            <input
+                type="text"
+                id="loginName"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <label>
+                Phone Number
+            </label>
+
+            <div class="phone-input">
+
+                <span>
+                    +91
+                </span>
+
+                <input
+                    type="tel"
+                    id="loginPhone"
+                    placeholder="10 digit mobile number"
+                    pattern="[0-9]{10}"
+                    maxlength="10"
+                    required
+                >
+
+            </div>
+
+
+            <label>
+                Email
+                <small>(optional)</small>
+            </label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="you@example.com"
+            >
+
+
+            <button
+                class="primary-button full"
+                type="submit"
+            >
+                Continue
+            </button>
+
+        </form>
+
+
+        <p class="demo-note">
+            Demo login — no real OTP or SMS is sent.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- MENU MODAL -->
+<!-- ================================================= -->
+
+<div
+    class="modal"
+    id="menuModal"
+>
+
+    <div class="modal-box menu-box">
+
+        <button
+            class="close"
+            onclick="closeModal('menuModal')"
+        >
+            ×
+        </button>
+
+        <div id="menuContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- RESERVATION MODAL -->
+<!-- ================================================= -->
+
+<div
+    class="modal"
+    id="reservationModal"
+>
+
+    <div class="modal-box reservation-box">
+
+        <button
+            class="close"
+            onclick="closeModal('reservationModal')"
+        >
+            ×
+        </button>
+
+
+        <!-- STEP INDICATOR -->
+
+        <div class="booking-steps">
+
+            <span class="booking-step active">
+                1
+            </span>
+
+            <span class="line"></span>
+
+            <span class="booking-step">
+                2
+            </span>
+
+            <span class="line"></span>
+
+            <span class="booking-step">
+                3
+            </span>
+
+        </div>
+
+
+        <!-- STEP 1 -->
+
+        <div
+            id="bookingStep1"
+            class="booking-page"
+        >
+
+            <p class="section-label">
+                RESERVE A TABLE
+            </p>
+
+            <h2 id="bookingRestaurantName">
+                Restaurant
+            </h2>
+
+            <p
+                id="bookingRestaurantLocation"
+                class="booking-location"
+            ></p>
+
+
+            <div class="booking-card">
+
+                <label>
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="bookingDate"
+                    required
+                >
+
+
+                <label>
+                    Number of guests
+                </label>
+
+                <div class="guest-selector">
+
+                    <button
+                        onclick="changeGuests(-1)"
+                    >
+                        −
+                    </button>
+
+                    <span id="guestCount">
+                        2
+                    </span>
+
+                    <button
+                        onclick="changeGuests(1)"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+
+                <label>
+                    Dining preference
+                </label>
+
+                <div class="meal-options">
+
+                    <button
+                        class="meal active"
+                        onclick="selectMeal('Lunch',this)"
+                    >
+                        ☀️ Lunch
+                    </button>
+
+                    <button
+                        class="meal"
+                        onclick="selectMeal('Dinner',this)"
+                    >
+                        🌙 Dinner
+                    </button>
+
+                </div>
+
+
+                <label>
+                    Select time
+                </label>
+
+                <div
+                    class="time-slots"
+                    id="timeSlots"
+                ></div>
+
+            </div>
+
+
+            <button
+                class="primary-button full"
+                onclick="goToBookingStep2()"
+            >
+                Continue
+            </button>
+
+        </div>
+
+
+        <!-- STEP 2 -->
+
+        <div
+            id="bookingStep2"
+            class="booking-page hidden"
+        >
+
+            <p class="section-label">
+                YOUR DETAILS
+            </p>
+
+            <h2>
+                Confirm your information
+            </h2>
+
+
+            <div class="guest-info-card">
+
+                <div class="profile-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong id="bookingUserName">
+                        User
+                    </strong>
+
+                    <p id="bookingUserPhone">
+                        +91
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="booking-summary">
+
+                <h3>
+                    Booking Summary
+                </h3>
+
+                <p>
+                    🍽️
+                    <span id="summaryRestaurant"></span>
+                </p>
+
+                <p>
+                    📅
+                    <span id="summaryDate"></span>
+                </p>
+
+                <p>
+                    👥
+                    <span id="summaryGuests"></span>
+                    guests
+                </p>
+
+                <p>
+                    🕐
+                    <span id="summaryTime"></span>
+                </p>
+
+            </div>
+
+
+            <label>
+                Special request
+                <small>(optional)</small>
+            </label>
+
+            <textarea
+                id="specialRequest"
+                placeholder="Birthday, anniversary, window seat..."
+            ></textarea>
+
+
+            <button
+                class="primary-button full"
+                onclick="goToPayment()"
+            >
+                Continue to Payment
+            </button>
+
+            <button
+                class="back-button"
+                onclick="goToBookingStep1()"
+            >
+                ← Back
+            </button>
+
+        </div>
+
+
+        <!-- STEP 3 PAYMENT -->
+
+        <div
+            id="bookingStep3"
+            class="booking-page hidden"
+        >
+
+            <p class="section-label">
+                PAYMENT
+            </p>
+
+            <h2>
+                Complete your reservation
+            </h2>
+
+
+            <div class="payment-summary">
+
+                <div>
+
+                    <span>
+                        Reservation fee
+                    </span>
+
+                    <strong>
+                        ₹99
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        GST
+                    </span>
+
+                    <strong>
+                        ₹18
+                    </strong>
+
+                </div>
+
+                <hr>
+
+                <div>
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong>
+                        ₹117
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <p class="payment-note">
+                This demo payment is only for your college project.
+                No real money will be charged.
+            </p>
+
+
+            <div class="payment-methods">
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="UPI"
+                        checked
+                    >
+
+                    <span>
+                        📱
+                    </span>
+
+                    <div>
+                        <strong>
+                            UPI
+                        </strong>
+
+                        <small>
+                            Google Pay / PhonePe / Paytm
+                        </small>
+                    </div>
+
+                </label>
+
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="Card"
+                    >
+
+                    <span>
+                        💳
+                    </span>
+
+                    <div>
+                        <strong>
+                            Credit / Debit Card
+                        </strong>
+
+                        <small>
+                            Visa / Mastercard / RuPay
+                        </small>
+                    </div>
+
+                </label>
+
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="Net Banking"
+                    >
+
+                    <span>
+                        🏦
+                    </span>
+
+                    <div>
+                        <strong>
+                            Net Banking
+                        </strong>
+
+                        <small>
+                            All major banks
+                        </small>
+                    </div>
+
+                </label>
+
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="Pay at Restaurant"
+                    >
+
+                    <span>
+                        💵
+                    </span>
+
+                    <div>
+                        <strong>
+                            Pay at Restaurant
+                        </strong>
+
+                        <small>
+                            Pay when you arrive
+                        </small>
+                    </div>
+
+                </label>
+
+            </div>
+
+
+            <button
+                class="primary-button full"
+                onclick="completeBooking()"
+            >
+                Pay ₹117 & Confirm Table
+            </button>
+
+
+            <button
+                class="back-button"
+                onclick="goToBookingStep2()"
+            >
+                ← Back
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- CONFIRMATION MODAL -->
+<!-- ================================================= -->
+
+<div
+    class="modal"
+    id="confirmationModal"
+>
+
+    <div class="modal-box confirmation-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Table Reserved!
+        </h2>
+
+        <p>
+            Your reservation has been confirmed.
+        </p>
+
+
+        <div class="confirmation-details">
+
+            <div>
+
+                <span>
+                    Restaurant
+                </span>
+
+                <strong id="confirmRestaurant"></strong>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Date
+                </span>
+
+                <strong id="confirmDate"></strong>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Time
+                </span>
+
+                <strong id="confirmTime"></strong>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Guests
+                </span>
+
+                <strong id="confirmGuests"></strong>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Booking ID
+                </span>
+
+                <strong id="confirmId"></strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="confirmation-message">
+
+            🎉 Your table is reserved!
+
+            <br>
+
+            Please arrive 10 minutes before
+            your reservation time.
+
+        </div>
+
+
+        <button
+            class="primary-button full"
+            onclick="closeModal('confirmationModal')"
+        >
+            Done
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- MY BOOKINGS MODAL -->
+<!-- ================================================= -->
+
+<div
+    class="modal"
+    id="bookingsModal"
+>
+
+    <div class="modal-box bookings-box">
+
+        <button
+            class="close"
+            onclick="closeModal('bookingsModal')"
+        >
+            ×
+        </button>
+
+        <p class="section-label">
+            YOUR ACCOUNT
+        </p>
+
+        <h2>
+            My Bookings
+        </h2>
+
+        <div id="bookingsList"></div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
